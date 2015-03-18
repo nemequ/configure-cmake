@@ -3,6 +3,12 @@
 # Autotools-style (./configure) wrapper for CMake
 # <https://github.com/nemequ/configure-cmake>
 #
+#   *** IMPORTANT ***
+#
+#   You must include the GNUInstallDirs module (which comes with
+#   CMake) in your project.  Just put "include (GNUInstallDirs)" in
+#   you CMakeLists.txt and you should be good.
+#
 # This script was originally written for Squash
 # <https://quixdb.github.io/squash/> by Evan Nemerson
 # <evan@nemerson.com>, but has been spun off into a separate
