@@ -233,12 +233,6 @@ while [ $# != 0 ]; do
         "--disable-debug")
             BUILD_TYPE="Release";;
 
-        "--passthrough")
-        ;&
-        "--pass-through")
-        ;&
-        "--passthru")
-        ;&
         "--pass-thru")
             shift;
             while [ $# != 0 ]; do
