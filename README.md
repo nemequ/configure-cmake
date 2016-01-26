@@ -1,12 +1,19 @@
-# Autotools-style configure script wrapper around CMake
+# configure-cmake
+
+configure-cmake is an autotools-style configure script for CMake-based
+projects.
 
 People building software on Linux or BSD generally expect to be able
 to `./configure && make && make install`, but projects using CMake
-don't provide a `configure` script.
+don't provide a `configure` script.  To make matters worse, the syntax
+for invoking CMake is awkward and has issues with discoverability.
 
-This script is just a simple wrapper around `cmake` which accepts
-autotools-style arguments (such as --prefix=...) and translates them
-into a cmake invocation.
+configure-cmake provides an easy way for people accustomed to
+autotools-based projects to build your CMake-based project.  Just drop
+the `configure` script into your project; it will accept most of the
+standard autotools arguments (such as `--prefix` and `--libdir`), as
+well as custom arguments you can specify, and map them to the correct
+CMake definitions.
 
 It it as permissively licensed as I can make it (CC0 is basically an
 attempt to put something in the public domain), so please feel free to
