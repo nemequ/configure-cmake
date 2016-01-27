@@ -249,6 +249,8 @@ while [ $# != 0 ]; do
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_C_FLAGS=$(quote "${1#CFLAGS=}")";;
         "CXXFLAGS="*)
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_CXX_FLAGS=$(quote "${1#CXXFLAGS=}")";;
+        "LDFLAGS="*)
+            LDFLAGS="$LDFLAGS ${1#LDFLAGS=}";;
 
         "--help")
             print_help;;
@@ -300,6 +302,14 @@ done
 
 if [ "x${LIBDIR}" = "x" ]; then
     LIBDIR="${PREFIX}/lib"
+fi
+
+# Unlike CFLAGS/CXXFLAGS/CC/CXX, LDFLAGS isn't handled by CMake, so we
+# need to parse it here.
+if [ "x${LDFLAGS}" != "x" ]; then
+    for varname in EXE MODULE SHARED STATIC; do
+        CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_${varname}_LINKER_FLAGS=$(quote "$LDFLAGS")"
+    done
 fi
 
 eval cmake "${TOP_SRCDIR}" -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DCMAKE_INSTALL_LIBDIR="${LIBDIR}" ${CMAKE_ARGS}
