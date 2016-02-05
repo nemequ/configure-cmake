@@ -177,80 +177,80 @@ EOF
 while [ $# != 0 ]; do
     case "$1" in
         "--prefix="*)
-            PREFIX="$(echo -n "${1}" | cut -b$(prefix_to_offset "--prefix=")-)";;
+            PREFIX="${1#*=}";;
         "--prefix")
             PREFIX="${2}"; shift;;
         "--bindir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_BINDIR=$(quote "${1#--bindir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_BINDIR=$(quote "${1#*=}")";;
         "--bindir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_BINDIR=$(quote "$2")"; shift;;
         "--sbindir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SBINDIR=$(quote "${1#--sbindir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SBINDIR=$(quote "${1#*=}")";;
         "--sbindir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SBINDIR=$(quote "$2")"; shift;;
         "--libexecdir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LIBEXECDIR=$(quote "${1#--dir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LIBEXECDIR=$(quote "${1#*=}")";;
         "--libexecdir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LIBEXECDIR=$(quote "$2")"; shift;;
         "--sysconfdir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SYSCONFDIR=$(quote "${1#--sysconfdir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SYSCONFDIR=$(quote "${1#*=}")";;
         "--sysconfdir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SYSCONFDIR=$(quote "$2")"; shift;;
         "--sharedstatedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SHAREDSTATEDIR=$(quote "${1#--sharedstatedir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SHAREDSTATEDIR=$(quote "${1#*=}")";;
         "--sharedstatedir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_SHAREDSTATEDIR=$(quote "$2")"; shift;;
         "--localstatedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALSTATEDIR=$(quote "${1#--localstatedir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALSTATEDIR=$(quote "${1#*=}")";;
         "--localstatedir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALSTATEDIR=$(quote "$2")"; shift;;
         "--libdir="*)
-            LIBDIR="${1#--libdir=}";;
+            LIBDIR="${1#*=}";;
         "--libdir")
             LIBDIR="${2}"; shift;;
         "--includedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=$(quote "${1#--includedir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=$(quote "${1#*=}")";;
         "--includedir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=$(quote "$2")"; shift;;
         "--oldincludedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_OLDINCLUDEDIR=$(quote "${1#--oldincludedir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_OLDINCLUDEDIR=$(quote "${1#*=}")";;
         "--oldincludedir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_OLDINCLUDEDIR=$(quote "$2")"; shift;;
         "--datarootdir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATAROOTDIR=$(quote "${1#--datarootdir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATAROOTDIR=$(quote "${1#*=}")";;
         "--datarootdir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATAROOTDIR=$(quote "$2")"; shift;;
         "--datadir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "${1#--datadir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "${1#*=}")";;
         "--datadir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "$2")"; shift;;
         "--infodir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INFODIR=$(quote "${1#--infodir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INFODIR=$(quote "${1#*=}")";;
         "--infodir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INFODIR=$(quote "$2")"; shift;;
         "--localedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALEDIR=$(quote "${1#--localedir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALEDIR=$(quote "${1#*=}")";;
         "--localedir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LOCALEDIR=$(quote "$2")"; shift;;
         "--mandir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_MANDIR=$(quote "${1#--mandir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_MANDIR=$(quote "${1#*=}")";;
         "--mandir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_MANDIR=$(quote "$2")"; shift;;
         "--docdir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DOCDIR=$(quote "${1#--docdir=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DOCDIR=$(quote "${1#*=}")";;
         "--docdir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DOCDIR=$(quote "$2")"; shift;;
 
         "CC="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_C_COMPILER=$(quote "${1#CC=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_C_COMPILER=$(quote "${1#*=}")";;
         "CXX="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_CXX_COMPILER=$(quote "${1#CXX=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_CXX_COMPILER=$(quote "${1#*=}")";;
         "CFLAGS="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_C_FLAGS=$(quote "${1#CFLAGS=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_C_FLAGS=$(quote "${1#*=}")";;
         "CXXFLAGS="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_CXX_FLAGS=$(quote "${1#CXXFLAGS=}")";;
+            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_CXX_FLAGS=$(quote "${1#*=}")";;
         "LDFLAGS="*)
-            LDFLAGS="$LDFLAGS ${1#LDFLAGS=}";;
+            LDFLAGS="$LDFLAGS ${1#*=}";;
 
         "--help")
             print_help;;
@@ -312,4 +312,4 @@ if [ "x${LDFLAGS}" != "x" ]; then
     done
 fi
 
-eval "cmake \"${TOP_SRCDIR}\" -DCMAKE_BUILD_TYPE=\"${BUILD_TYPE}\" -DCMAKE_INSTALL_PREFIX=\"${PREFIX}\" -DCMAKE_INSTALL_LIBDIR=\"${LIBDIR}\" ${CMAKE_ARGS}"
+eval "cmake ${TOP_SRCDIR} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=${LIBDIR} ${CMAKE_ARGS}"
