@@ -33,6 +33,8 @@ if [ -e "${TOP_SRCDIR}/.configure-custom.sh" ]; then
     . "${TOP_SRCDIR}/.configure-custom.sh"
 fi
 
+command -v cmake > /dev/null || { echo "CMake not installed or not in $PATH!"; exit 1; }
+
 quote() {
     echo "$1" | sed -e "s|'|'\\\\''|g; 1s/^/'/; \$s/\$/'/"
 }
